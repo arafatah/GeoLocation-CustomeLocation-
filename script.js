@@ -36,7 +36,16 @@ if (navigator.geolocation)
         const coords = [lat, lng];
         L.marker(coords)
           .addTo(map)
-          .bindPopup('Boom Boom Boom')
+          .bindPopup(
+            L.popup({
+              maxWidth: 250,
+              minWidth: 100,
+              autoClose: false,
+              closeOnClick: false,
+              className: 'running-popup',
+            })
+          )
+          .setPopupContent('Workout')
           .openPopup();
       });
     },
