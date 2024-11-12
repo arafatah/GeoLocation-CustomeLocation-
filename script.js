@@ -19,17 +19,26 @@ if (navigator.geolocation)
       console.log(longitude, latitude);
       console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
 
-      const map = L.map('map').setView([51.505, -0.09], 13);
+      const coords = [latitude, longitude];
 
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      const map = L.map('map').setView(coords, 13);
+      // console.log(map);
+
+      L.tileLayer('https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      L.marker([51.5, -0.09])
-        .addTo(map)
-        .bindPopup('A pretty CSS popup.<br> Easily customizable.')
-        .openPopup();
+      map.on('click', function (mapEvent) {
+        console.log(mapEvent);
+        const { lat, lng } = mapEvent.latlng;
+
+        const coords = [lat, lng];
+        L.marker(coords)
+          .addTo(map)
+          .bindPopup('Boom Boom Boom')
+          .openPopup();
+      });
     },
     function () {
       alert('Could not get your position');
