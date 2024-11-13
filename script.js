@@ -11,7 +11,6 @@ const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
 
-
 class App {
   #map;
   #mapEvent;
@@ -35,6 +34,7 @@ class App {
   }
 
   _loadMap(position) {
+    console.log(position);
     const { latitude } = position.coords;
     const { longitude } = position.coords;
     console.log(longitude, latitude);
