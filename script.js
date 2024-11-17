@@ -1,8 +1,5 @@
 'use strict';
 
-// prettier-ignore
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
 class Workout {
   date = new Date();
   // id = (new Date() + '').slice(-10);
@@ -16,6 +13,15 @@ class Workout {
     this.duration = duration; // in min
     console.log(this.id);
   }
+
+  _setDescription() {
+    // prettier-ignore
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${
+      months[this.date.getMonth()]
+    } ${this.date.getDate()}`;
+  }
 }
 
 class Running extends Workout {
@@ -25,6 +31,7 @@ class Running extends Workout {
     this.cadence = cadence;
     // this.type = 'running';
     this.calcPace();
+    this._setDescription();
   }
 
   calcPace() {
@@ -41,6 +48,7 @@ class Cycling extends Workout {
     this.elevationGain = elevationGain;
     // this.type = 'cycling';
     this.calcSpeed();
+    this._setDescription();
   }
 
   calcSpeed() {
@@ -205,9 +213,8 @@ class App {
   }
 
   _renderWorkout(workout) {
-    let html = `<li class="workout workout--${workout.type}" data-id="${
-      workout.id
-    }">
+    let html = `
+    <li class="workout workout--${workout.type}" data-id="${workout.id}">
     <h2 class="workout__title">${workout.description}</h2>
     <div class="workout__details">
       <span class="workout__icon">${
@@ -251,7 +258,6 @@ class App {
     }
 
     form.insertAdjacentHTML('afterend', html);
-    
   }
 }
 
