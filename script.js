@@ -125,6 +125,7 @@ class App {
     }).addTo(this.#map);
 
     // Handling clicks on map
+    // This on method is from leaflet library 
     this.#map.on('click', this._showForm.bind(this));
 
     // Show the marker from the localStorage data.
@@ -159,7 +160,9 @@ class App {
     const validInputs = (...inputs) =>
       inputs.every(inp => Number.isFinite(inp));
 
-    const allPositive = (...inputs) => inputs.every(inp => inp > 0);
+    const allPositive = (...inputs) =>
+      inputs.every(inp => inp > 0);
+
     e.preventDefault();
 
     // Get dat from the form
