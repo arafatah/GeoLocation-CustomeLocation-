@@ -138,7 +138,7 @@ class App {
     inputDistance.focus();
   }
 
-  _hideFrom() {
+  _hideForm() {
     inputDistance.value =
       inputDuration.value =
       inputCadence.value =
@@ -163,7 +163,7 @@ class App {
 
     e.preventDefault();
 
-    // Get dat from the form
+    // Get data from the form
     const type = inputType.value;
     const distance = +inputDistance.value;
     const duration = +inputDuration.value;
@@ -171,7 +171,6 @@ class App {
     let workout;
 
     // Check if data is valid
-
     // If workout running, Create running object
     if (type === 'running') {
       const cadence = +inputCadence.value;
