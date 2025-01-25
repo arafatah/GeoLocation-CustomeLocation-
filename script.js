@@ -107,7 +107,6 @@ class App {
   }
 
   _loadMap(position) {
-    // console.log(position);
     const { latitude } = position.coords;
     const { longitude } = position.coords;
     // console.log(longitude, latitude);
@@ -116,7 +115,6 @@ class App {
     const coords = [latitude, longitude];
 
     this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
-    // console.log(map);
     // https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png
     // https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png - problem
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -207,7 +205,6 @@ class App {
 
     // Add new object to workout array
     this.#workouts.push(workout);
-    console.log(workout);
 
     // Render workout on map as marker
     this._renderWorkoutMarker(workout);
@@ -289,15 +286,13 @@ class App {
   
   _moveToPopup(e) {
     const workoutEl = e.target.closest('.workout');
-    console.log(workoutEl);
-
     if (!workoutEl) return;
+
 
     const workout = this.#workouts.find(
       work => work.id === workoutEl.dataset.id
     );
 
-    console.log(workout);
 
     this.#map.setView(workout.coords, this.#mapZoomLevel, {
       animate: true,
@@ -322,7 +317,6 @@ class App {
     this.#workouts = data;
 
     this.#workouts.forEach(work => {
-      console.log(work.type);
       this._renderWorkout(work);
     });
   }
